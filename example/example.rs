@@ -30,6 +30,7 @@ use sdl2::EventPump;
 use sdl2::AudioSubsystem;
 use std::cmp;
 use std::env;
+use std::process;
 use std::mem;
 use std::fs::File;
 use std::thread::sleep;
@@ -289,8 +290,8 @@ fn upload_image(video_track: &VideoTrack,
 fn main() {
     let args: Vec<String> = env::args().map(|arg| arg.to_owned()).collect();
     if args.len() < 3 {
-        println!("usage: example path-to-video-or-audio-file mime-type");
-        return
+        eprintln!("usage: example path-to-video-or-audio-file mime-type");
+        process::exit(1);
     }
 
     let sdl_context = sdl2::init().unwrap();
